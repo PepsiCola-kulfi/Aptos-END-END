@@ -7,6 +7,7 @@ import { HomeIcon as IconHome, UserIcon as IconUser, MessageCircleIcon as IconMe
 import { useEffect } from "react"
 import { Logos } from "@/components/LogoCloud"
 import { Features } from "@/components/BentoUI"
+import FAQSection from "@/components/FAQ"
 
 export default function Home() {
   const navItems = [
@@ -44,7 +45,8 @@ export default function Home() {
   }, [])
 
   return (
-    <div
+    <div className="relative bg-black min-h-screen w-full overflow-hidden ">
+      <div
       className="relative bg-black min-h-screen w-full overflow-hidden "
       style={{
         background: `
@@ -67,10 +69,13 @@ export default function Home() {
 
       {/* Hero Section */}
       <HeroSection />
-
-
+      <Logos/>
       <Features />
+      <FAQSection />
+      {/* Optional dark overlay for better text readability */}
+      <div className="absolute inset-0 bg-black/20 pointer-events-none -z-10"></div>
 
+    </div>
     </div>
   )
 }
