@@ -47,7 +47,7 @@ const navItems = [
     <div
       className="relative h-screen w-full overflow-hidden bg-cover bg-center bg-no-repeat"
       style={{
-        backgroundImage: "url('/images/Bg.png')",
+        backgroundImage: "url('/images/gradient.png')",
       }}
     >
       <div>   
