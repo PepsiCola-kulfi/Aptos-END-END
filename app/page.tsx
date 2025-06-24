@@ -1,12 +1,16 @@
 "use client"
 
 import { FloatingNav } from "@/components/ui/floating-navbar"
-import Lenis from "lenis";
-import { Home as IconHome, User as IconUser, MessageSquare as IconMessage } from "lucide-react";
-import { useEffect,useRef } from "react";
+import HeroSection from "@/components/Hero"
+import Lenis from "lenis"
+import { HomeIcon as IconHome, UserIcon as IconUser, MessageCircleIcon as IconMessage } from "lucide-react"
+import { useEffect } from "react"
+import { Logos } from "@/components/LogoCloud"
+import {Features} from "@/components/BentoUI"
+
 
 export default function Home() {
-const navItems = [
+  const navItems = [
     {
       name: "Home",
       link: "/",
@@ -20,45 +24,46 @@ const navItems = [
     {
       name: "Contact",
       link: "/contact",
-      icon: (
-        <IconMessage className="h-4 w-4 text-neutral-500 dark:text-white" />
-      ),
+      icon: <IconMessage className="h-4 w-4 text-neutral-500 dark:text-white" />,
     },
-  ];
+  ]
 
   // Initialize Lenis smooth scrolling
   useEffect(() => {
-    const lenis = new Lenis({
-    });
+    const lenis = new Lenis({})
 
     function raf(time: number) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
+      lenis.raf(time)
+      requestAnimationFrame(raf)
     }
 
-    requestAnimationFrame(raf);
+    requestAnimationFrame(raf)
 
     return () => {
-      lenis.destroy();
-    };
-  }, []);
+      lenis.destroy()
+    }
+  }, [])
 
   return (
     <div
-      className="relative h-screen w-full overflow-hidden bg-cover bg-center bg-no-repeat"
+      className="relative min-h-screen w-full overflow-hidden bg-cover bg-center bg-no-repeat"
       style={{
         backgroundImage: "url('/images/gradient.png')",
       }}
     >
-      <div>   
-      </div>
-
-
-      {/* Optional dark overlay for better text readability */}
-      <div className="absolute inset-0 bg-black/20 pointer-events-none"></div>
+      {/* Navigation */}
       <div className="absolute top-0 left-0 right-0 z-10 py-4">
-        <FloatingNav navItems={navItems}/>
+        <FloatingNav navItems={navItems} />
       </div>
+
+      {/* Hero Section */}
+      <HeroSection />
+
+      <Logos/>
+
+      <Features />
+      {/* Optional dark overlay for better text readability */}
+      <div className="absolute inset-0 bg-black/20 pointer-events-none -z-10"></div>
     </div>
   )
 }
