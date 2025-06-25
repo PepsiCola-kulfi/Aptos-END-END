@@ -8,6 +8,7 @@ import { useEffect } from "react"
 import { Logos } from "@/components/LogoCloud"
 import { Features } from "@/components/BentoUI"
 import FAQSection from "@/components/FAQ"
+import HowItWorks from "@/components/HowItworks"
 
 export default function Home() {
   const navItems = [
@@ -45,9 +46,9 @@ export default function Home() {
   }, [])
 
   return (
-    <div className="relative bg-black min-h-screen w-full overflow-hidden ">
+    <div className="relative bg-[#120b03] min-h-screen w-full overflow-hidden ">
       <div
-      className="relative bg-black min-h-screen w-full overflow-hidden "
+      className="relative bg-[#120b03] min-h-screen w-full overflow-hidden "
       style={{
         background: `
       linear-gradient(to bottom, #000000 0%, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.1) 20%, #000000 100%),
@@ -69,8 +70,9 @@ export default function Home() {
 
       {/* Hero Section */}
       <HeroSection />
-      <Logos/>
+     
       <Features />
+      <HowItWorks/>
       <FAQSection />
       {/* Optional dark overlay for better text readability */}
       <div className="absolute inset-0 bg-black/20 pointer-events-none -z-10"></div>

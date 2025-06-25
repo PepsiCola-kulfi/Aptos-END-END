@@ -1,101 +1,139 @@
+"use client"
+
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
+import { motion } from "framer-motion"
+import { Poppins } from "next/font/google"
+import { cn } from "@/lib/utils"
+import { AuroraText } from "@/components/magicui/aurora-text"
+
+const poppins = Poppins({
+  weight: ["400", "500", "600", "700"],
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-poppins",
+})
 
 const FAQSection = () => {
   const faqData = [
     {
-      question: "What is our platform?",
+      question: "How does EDU Chain ensure my will's security?",
       answer:
-        "Our platform is designed to revolutionize the startup ecosystem, offering innovative solutions for entrepreneurs and businesses to build, scale, and succeed in the digital age.",
+        "EDU Chain provides immutable, transparent records of your will. Its high-speed performance and EVM compatibility ensure your wishes are securely stored and executed exactly as intended, with minimal risk of tampering or fraud.",
     },
     {
-      question: "Is our platform secure?",
+      question: "What are the advantages of creating a will on EDU?",
       answer:
-        "Yes, we employ bank-level security measures including end-to-end encryption, multi-factor authentication, and compliance with international security standards to protect your data and business operations.",
+        "EDU offers fast transaction speeds, low costs, and eco-friendly operations. This means your will can be created, updated, and executed quickly and efficiently, with minimal environmental impact and transaction fees.",
     },
     {
-      question: "Which technologies do we support?",
+      question: "Can I update my will after it's been created on EDU?",
       answer:
-        "We support a wide range of modern technologies including Web3, blockchain, AI/ML, cloud computing, and traditional web technologies, providing comprehensive solutions for diverse business needs.",
+        "Yes, our platform allows you to update your will at any time. Changes are recorded on the EDU Chain, ensuring a clear audit trail while maintaining the flexibility to adapt to life changes.",
     },
     {
-      question: "Can I integrate with existing tools?",
+      question: "How does asset distribution work with a EDU-based will?",
       answer:
-        "Yes, our platform offers seamless integration with popular business tools, APIs, and services, allowing you to connect your existing workflow and maximize productivity.",
-    },
-    {
-      question: "How do we ensure cost-effectiveness?",
-      answer:
-        "We leverage cutting-edge technology and strategic partnerships to provide competitive pricing with transparent costs and no hidden fees, ensuring maximum value for your investment.",
-    },
-    {
-      question: "Do we offer ongoing support?",
-      answer:
-        "Yes, we provide comprehensive support including documentation, community forums, direct support channels, and dedicated account management for enterprise clients.",
-    },
-    {
-      question: "How do we handle scalability?",
-      answer:
-        "Our platform is built with scalability in mind, featuring auto-scaling infrastructure, load balancing, and performance optimization to grow with your business needs.",
-    },
-    {
-      question: "Are we compliant with regulations?",
-      answer:
-        "Yes, we maintain full compliance with international regulations including GDPR, SOC 2, and various industry-specific standards to ensure your business meets all requirements.",
+        "Assets are distributed according to the conditions set in your will's smart contract. This can include time-based releases, specific event triggers, or instant distribution upon verification of certain conditions.",
     },
   ]
 
+  const containerVariants = {
+    initial: { opacity: 0 },
+    animate: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2,
+      },
+    },
+  }
+
+  const itemVariants = {
+    initial: { opacity: 0, y: 20 },
+    animate: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+        ease: "easeOut",
+      },
+    },
+  }
+
   return (
-    <section className="py-16 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
-        <div className="grid lg:grid-cols-5 gap-12 lg:gap-16 items-start">
+    <section className={cn("py-20 px-4 sm:px-6 lg:px-8 bg-black relative", poppins.className)}>
+      {/* Background gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black via-black/95 to-black pointer-events-none"></div>
+
+      <div className="max-w-7xl mx-auto relative z-10">
+        <motion.div
+          className="grid lg:grid-cols-5 gap-12 lg:gap-16 items-start"
+          variants={containerVariants}
+          initial="initial"
+          animate="animate"
+        >
           {/* Left Column - 40% */}
-          <div className="lg:col-span-2 space-y-8">
+          <motion.div className="lg:col-span-2 space-y-8" variants={itemVariants}>
             <div>
-              <p className="text-sm text-white/60 uppercase tracking-wider mb-4 font-medium">
+              <motion.p
+                className="text-sm text-white/50 uppercase tracking-wider mb-6 font-light"
+                variants={itemVariants}
+              >
                 FREQUENTLY ASKED QUESTIONS
-              </p>
-              <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight">
-                Have questions in mind?{" "}
-                <span className="bg-gradient-to-r from-[#df500f] to-[#ff6b35] bg-clip-text text-transparent">
-                  Let us answer it
-                </span>
-              </h2>
+              </motion.p>
+              <motion.h2
+                className={cn(
+                  "text-3xl sm:text-4xl lg:text-5xl font-thin text-white leading-tight mb-4",
+                  poppins.className,
+                )}
+                variants={itemVariants}
+              >
+                <AuroraText colors={["#df500f", "#ff6b35", "#ffffff", "#c4460d"]}>
+                  <span className="text-transparent">Have questions in mind?</span>
+                </AuroraText>
+              </motion.h2>
+              <motion.p className="text-2xl font-light text-white/80" variants={itemVariants}>
+                Let us answer it
+              </motion.p>
             </div>
 
-            <div className="text-white/70">
-              <p>Don't find your question?</p>
-              <p>
+            <motion.div className="text-white/60 space-y-2" variants={itemVariants}>
+              <p className="font-light">Don't find your question?</p>
+              <p className="font-light">
                 Contact us at{" "}
                 <a
                   href="mailto:contact@startup.com"
-                  className="text-[#df500f] hover:text-[#ff6b35] transition-colors duration-200 underline decoration-[#df500f]/50 hover:decoration-[#ff6b35]"
+                  className="text-[#df500f] hover:text-[#ff6b35] transition-colors duration-300 underline decoration-[#df500f]/50 hover:decoration-[#ff6b35] font-normal"
                 >
                   contact@startup.com
                 </a>
               </p>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
           {/* Right Column - 60% */}
-          <div className="lg:col-span-3">
+          <motion.div className="lg:col-span-3" variants={itemVariants}>
             <Accordion type="single" collapsible defaultValue="item-0" className="space-y-4">
               {faqData.map((faq, index) => (
-                <AccordionItem
-                  key={index}
-                  value={`item-${index}`}
-                  className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl overflow-hidden transition-all duration-300 hover:bg-white/10 hover:border-[#df500f]/30 group"
-                >
-                  <AccordionTrigger className="px-6 py-5 text-left text-white hover:text-white/90 transition-colors duration-200 hover:no-underline [&[data-state=open]>svg]:rotate-180 [&[data-state=open]>svg]:text-[#df500f]">
-                    <span className="text-lg font-medium pr-4 group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-[#df500f] group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300">
-                      {faq.question}
-                    </span>
-                  </AccordionTrigger>
-                  <AccordionContent className="px-6 pb-6 text-white/80 leading-relaxed">{faq.answer}</AccordionContent>
-                </AccordionItem>
+                <motion.div key={index} variants={itemVariants} whileHover={{ y: -2 }} transition={{ duration: 0.2 }}>
+                  <AccordionItem
+                    value={`item-${index}`}
+                    className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl overflow-hidden transition-all duration-300 hover:bg-white/10 hover:border-[#df500f]/30 hover:shadow-[0_0_30px_rgba(223,80,15,0.1)] group"
+                  >
+                    <AccordionTrigger className="px-8 py-6 text-left text-white hover:text-white/90 transition-colors duration-300 hover:no-underline [&[data-state=open]>svg]:rotate-180 [&[data-state=open]>svg]:text-[#df500f] [&[data-state=open]>svg]:scale-110">
+                      <span className="text-lg font-thin pr-4 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-[#df500f] transition-all duration-300">
+                        {faq.question}
+                      </span>
+                    </AccordionTrigger>
+                    <AccordionContent className="px-8 pb-6 text-white/70 leading-relaxed font-light text-base">
+                      {faq.answer}
+                    </AccordionContent>
+                  </AccordionItem>
+                </motion.div>
               ))}
             </Accordion>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   )
