@@ -7,6 +7,7 @@ import { Poppins } from "next/font/google"
 import { cn } from "@/lib/utils"
 import { motion, useScroll, useTransform } from "framer-motion"
 import { useState, useEffect } from "react"
+import { Logos } from "./LogoCloud"
 
 const poppins = Poppins({
   weight: ["400", "500", "600", "700"],
@@ -198,54 +199,11 @@ export default function HeroSection() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 2.6 }}
       >
-        {[
-          { Icon: Github, label: "GitHub" },
-          { Icon: Twitter, label: "Twitter" },
-          { Icon: Linkedin, label: "LinkedIn" },
-        ].map(({ Icon, label }, index) => (
-          <motion.a
-            key={label}
-            href="#"
-            className="text-white/60 hover:text-white transition-colors duration-200 p-2 rounded-full hover:bg-white/10"
-            aria-label={label}
-            whileHover={{
-              scale: 1.2,
-              rotate: [0, -10, 10, 0],
-              y: -5,
-            }}
-            whileTap={{ scale: 0.9 }}
-            transition={{ duration: 0.3 }}
-          >
-            <Icon size={24} />
-          </motion.a>
-        ))}
+        <Logos />
+
       </motion.div>
 
-      {/* Floating scroll indicator */}
-      <motion.div
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-        animate={{
-          y: [0, 10, 0],
-        }}
-        transition={{
-          duration: 2,
-          repeat: Number.POSITIVE_INFINITY,
-        }}
-      >
-        <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center">
-          <motion.div
-            className="w-1 h-3 bg-white/60 rounded-full mt-2"
-            animate={{
-              y: [0, 12, 0],
-              opacity: [1, 0, 1],
-            }}
-            transition={{
-              duration: 2,
-              repeat: Number.POSITIVE_INFINITY,
-            }}
-          />
-        </div>
-      </motion.div>
+
     </motion.div>
   )
 }
